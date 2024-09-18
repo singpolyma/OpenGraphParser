@@ -66,7 +66,7 @@ class JsoupNetworkCall(
                 openGraphResult.description = docSelection.firstOrNull()?.attr("content") ?: ""
             }
             if (openGraphResult.url.isNullOrEmpty()) {
-                openGraphResult.url = getBaseUrl(url)
+                openGraphResult.url = response.url().toString()
             }
         } catch (e: Exception) {
             e.printStackTrace()
