@@ -1,6 +1,8 @@
 package com.kedia.ogparser
 
 import android.util.Log
+import java.net.URL
+import java.net.MalformedURLException
 import org.jsoup.Jsoup
 
 /**
@@ -45,6 +47,13 @@ class JsoupNetworkCall(
                     }
                     OG_URL -> {
                         openGraphResult.url = tag.attr(OPEN_GRAPH_KEY)
+                        if (!openGraphResult.url.isNullOrEmpty()) {
+                            try {
+                                openGraphResult.url = URL(response.url(), openGraphResult.url).toString()
+                            } catch (e: MalformedURLException) {
+                                openGraphResult.url = null
+                            }
+                        }
                     }
                     OG_TITLE -> {
                         openGraphResult.title = tag.attr(OPEN_GRAPH_KEY)
