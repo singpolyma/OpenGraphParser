@@ -6,5 +6,6 @@ data class OpenGraphResult(
     var url: String? = null,
     var image: String? = null,
     var siteName: String? = null,
-    var type: String? = null
+    var type: String? = null,
+    var video: String? = null
 )

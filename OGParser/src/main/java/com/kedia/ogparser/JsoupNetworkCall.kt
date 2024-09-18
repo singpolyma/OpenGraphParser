@@ -61,8 +61,18 @@ class JsoupNetworkCall(
                     OG_SITE_NAME -> {
                         openGraphResult.siteName = tag.attr(OPEN_GRAPH_KEY)
                     }
-                    OG_TYPE -> {
-                        openGraphResult.type = tag.attr(OPEN_GRAPH_KEY)
+                    OG_VIDEO -> {
+                        if (openGraphResult.video.isNullOrEmpty()) {
+                            openGraphResult.video = tag.attr(OPEN_GRAPH_KEY)
+                        }
+                    }
+                    OG_VIDEO_URL -> {
+                        if (openGraphResult.video.isNullOrEmpty()) {
+                            openGraphResult.video = tag.attr(OPEN_GRAPH_KEY)
+                        }
+                    }
+                    OG_VIDEO_SECURE_URL -> {
+                        openGraphResult.video = tag.attr(OPEN_GRAPH_KEY)
                     }
                 }
             }
@@ -101,5 +111,8 @@ class JsoupNetworkCall(
         private const val OG_TITLE = "og:title"
         private const val OG_SITE_NAME = "og:site_name"
         private const val OG_TYPE = "og:type"
+        private const val OG_VIDEO = "og:video"
+        private const val OG_VIDEO_SECURE_URL = "og:video:secure_url"
+        private const val OG_VIDEO_URL = "og:video:url"
     }
 }
